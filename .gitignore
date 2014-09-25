@@ -35,11 +35,3 @@ node_modules/
 bower_components/
 bin/
 ext/
-bower.json
-package.json
-favicon.ico
-
-# scripts
-*.bat
-*.sh
-
