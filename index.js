@@ -1,7 +1,7 @@
 var Fs = require('fs');
 var Path = require('path');
 var Mkdirp = require('mkdirp');
-var Rimraf = require('rimraf');
+var Del = require('del');
 var FireFs = {};
 
 function copySync ( src, dest ) {
@@ -53,9 +53,9 @@ FireFs.copySync = function ( src, dest ) {
 };
 
 // remove a directory recursively
-FireFs.rimraf = Rimraf;
+FireFs.del = Del;
 
-FireFs.rimrafSync = Rimraf.sync;
+FireFs.delSync = Del.sync;
 
 //
 var _ = {};
