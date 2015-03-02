@@ -4,6 +4,39 @@ var Mkdirp = require('mkdirp');
 var Rimraf = require('rimraf');
 var FireFs = {};
 
+/**
+ * check if a given path exists
+ * @method exists
+ * @param {string} path
+ * @param {function} callback
+ */
+
+function exists (path, callback) {
+    Fs.stat(path, function (err) {
+        callback(checkErr(err));
+    });
+}
+
+FireFs.exists = exists;
+
+/**
+ * check if a given path exists, this is the sync version of FireFs.exists
+ * @method existsSync
+ * @param {string} path
+ * @return {boolean}
+ */
+function existsSync(path) {
+    try {
+        Fs.statSync(path);
+        return true;
+    } catch (err) {
+        return checkErr(err);
+    }
+}
+
+FireFs.existsSync = existsSync;
+
+//copy sync
 function copySync ( src, dest ) {
     Fs.writeFileSync(dest, Fs.readFileSync(src));
 }
@@ -30,9 +63,9 @@ FireFs.makeTree = function ( path, opts, cb ) {
 
 // a copy function just like bash's cp
 FireFs.copySync = function ( src, dest ) {
-    if ( Fs.existsSync(src) ) {
+    if ( existsSync(src) ) {
         if ( Fs.statSync(src).isDirectory() ) {
-            if ( Fs.existsSync(dest) && Fs.statSync(dest).isDirectory() ) {
+            if ( existsSync(dest) && Fs.statSync(dest).isDirectory() ) {
                 copySyncR ( src, Path.join(dest, Path.basename(src)) );
             }
             else {
@@ -41,7 +74,7 @@ FireFs.copySync = function ( src, dest ) {
             }
         }
         else {
-            if ( Fs.existsSync(dest) && Fs.statSync(dest).isDirectory() ) {
+            if ( existsSync(dest) && Fs.statSync(dest).isDirectory() ) {
                 copySync ( src, Path.join(dest, Path.basename(src)) );
             }
             else {
@@ -56,6 +89,48 @@ FireFs.copySync = function ( src, dest ) {
 FireFs.rimraf = Rimraf;
 
 FireFs.rimrafSync = Rimraf.sync;
+
+/**
+* @function checkErr
+* @param {Error|null} err The error value.
+* @return {Boolean} A boolean representing if the file exists or not.
+*/
+function checkErr(err) {
+    return err && err.code === "ENOENT" ? false : true;
+}
+
+/**
+ * check if a given path exists and is a directory
+ * @method isDir
+ * @param {string} path
+ * @param {function} callback
+ */
+
+FireFs.isDir = function (path, callback) {
+    Fs.stat(path, function (err, stats) {
+        if (err && err.code === "ENOENT") return callback(false);
+        else {
+            if (stats.isDirectory()) return callback(true);
+            else return callback(false);
+        }
+    });
+};
+
+/**
+ * check if a given path exists and is directory synchronously
+ * @method isDirSync
+ * @param {string} path
+ * @return {boolean}
+ */
+FireFs.isDirSync = function (path) {
+    try {
+        var stats = Fs.statSync(path);
+        if (stats.isDirectory()) return true;
+        else return false;
+    } catch (err) {
+        return checkErr(err);
+    }
+};
 
 //
 var _ = {};
