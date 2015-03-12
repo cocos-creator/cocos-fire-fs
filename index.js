@@ -107,11 +107,16 @@ function checkErr(err) {
  */
 
 FireFs.isDir = function (path, callback) {
+    if ( !path ) {
+        callback( null, false );
+        return;
+    }
+
     Fs.stat(path, function (err, stats) {
-        if (err && err.code === "ENOENT") return callback(false);
+        if (err && err.code === "ENOENT") return callback( null, false );
         else {
-            if (stats.isDirectory()) return callback(true);
-            else return callback(false);
+            if (stats.isDirectory()) return callback( null, true );
+            else return callback( null, false );
         }
     });
 };
@@ -123,6 +128,9 @@ FireFs.isDir = function (path, callback) {
  * @return {boolean}
  */
 FireFs.isDirSync = function (path) {
+    if ( !path )
+        return false;
+
     try {
         var stats = Fs.statSync(path);
         if (stats.isDirectory()) return true;
