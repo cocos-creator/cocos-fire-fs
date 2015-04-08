@@ -96,7 +96,7 @@ FireFs.rimrafSync = Rimraf.sync;
 * @return {Boolean} A boolean representing if the file exists or not.
 */
 function checkErr(err) {
-    return err && err.code === "ENOENT" ? false : true;
+    return err && (err.code === "ENOENT" || err.code === "ENOTDIR") ? false : true;
 }
 
 /**

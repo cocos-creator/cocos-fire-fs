@@ -46,6 +46,10 @@ describe('FireFs', function () {
             FireFs.existsSync(Path.join('./test', 'foobar', 'foo_file'))
                 .should.eql(true);
         });
+        it('should return false when the path under a file', function () {
+            FireFs.existsSync(Path.join('./test', 'foobar', 'foo_file', 'hello_world.js'))
+                .should.eql(false);
+        });
     });
     describe('.isDir()', function() {
         beforeEach(function () {
