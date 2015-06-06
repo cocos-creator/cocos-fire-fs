@@ -1,14 +1,14 @@
 {
     "name": "fire-fs",
     "description": "node's fs module with some helpful additions.",
-    "version": "0.1.8",
+    "version": "0.1.9",
     "keywords": [
         "fs",
         "file",
         "filesystem"
     ],
     "scripts": {
-        "test": "mocha --require should"
+        "test": "mocha --require chai"
     },
     "homepage": "https://github.com/fireball-x/fire-fs",
     "repository": {
@@ -24,10 +24,10 @@
     }],
     "devDependencies": {
         "mocha": "",
-        "should": ""
+        "chai": ""
     },
     "dependencies": {
-        "mkdirp": "",
-        "rimraf": ""
+        "mkdirp": "0.5.1",
+        "rimraf": "^2.2.8"
     }
 }

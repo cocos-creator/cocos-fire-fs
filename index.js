@@ -26,6 +26,9 @@ FireFs.exists = exists;
  * @return {boolean}
  */
 function existsSync(path) {
+    if ( path === null || path === undefined )
+        return false;
+
     try {
         Fs.statSync(path);
         return true;
