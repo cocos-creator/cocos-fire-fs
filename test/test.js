@@ -6,7 +6,7 @@ var expect = Chai.expect;
 Chai.should();
 
 function reset () {
-    FireFs.rimrafSync("./test/foobar/");
+    FireFs.removeSync("./test/foobar/");
     FireFs.copySync("./test/test-data/", "./test/foobar");
 }
 

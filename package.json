@@ -1,7 +1,7 @@
 {
     "name": "fire-fs",
     "description": "node's fs module with some helpful additions.",
-    "version": "0.1.9",
+    "version": "0.2.0",
     "keywords": [
         "fs",
         "file",
@@ -27,7 +27,6 @@
         "chai": ""
     },
     "dependencies": {
-        "mkdirp": "0.5.1",
-        "rimraf": "^2.2.8"
+        "fs-extra": "0.21.0"
     }
 }
