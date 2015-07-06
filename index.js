@@ -37,55 +37,6 @@ function existsSync(path) {
 
 FireFs.existsSync = existsSync;
 
-// //copy sync
-// function copySync ( src, dest ) {
-//     Fs.writeFileSync(dest, Fs.readFileSync(src));
-// }
-
-// function copySyncR ( src, dest ) {
-//     if ( Fs.statSync(src).isDirectory() ) {
-//         Fs.mkdirSync(dest);
-//         Fs.readdirSync(src).forEach(function(name) {
-//             copySyncR ( Path.join(src, name), Path.join(dest, name) );
-//         });
-//     }
-//     else {
-//         copySync ( src, dest );
-//     }
-// }
-
-// FireFs.makeTreeSync = function ( path, opts ) {
-//     Mkdirp.sync(path, opts);
-// };
-
-// FireFs.makeTree = function ( path, opts, cb ) {
-//     Mkdirp(path, opts, cb);
-// };
-
-// // a copy function just like bash's cp
-// FireFs.copySync = function ( src, dest ) {
-//     if ( existsSync(src) ) {
-//         if ( Fs.statSync(src).isDirectory() ) {
-//             if ( existsSync(dest) && Fs.statSync(dest).isDirectory() ) {
-//                 copySyncR ( src, Path.join(dest, Path.basename(src)) );
-//             }
-//             else {
-//                 FireFs.makeTreeSync(Path.dirname(dest));
-//                 copySyncR ( src, dest );
-//             }
-//         }
-//         else {
-//             if ( existsSync(dest) && Fs.statSync(dest).isDirectory() ) {
-//                 copySync ( src, Path.join(dest, Path.basename(src)) );
-//             }
-//             else {
-//                 FireFs.makeTreeSync(Path.dirname(dest));
-//                 copySync ( src, dest );
-//             }
-//         }
-//     }
-// };
-
 /**
 * @function checkErr
 * @param {Error|null} err The error value.
