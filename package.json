@@ -1,7 +1,7 @@
 {
     "name": "fire-fs",
     "description": "node's fs module with some helpful additions.",
-    "version": "0.2.2",
+    "version": "0.2.3",
     "keywords": [
         "fs",
         "file",
@@ -27,6 +27,6 @@
         "chai": ""
     },
     "dependencies": {
-        "fs-extra": "0.26.3"
+        "fs-extra": "fireball-x/node-fs-extra"
     }
 }
